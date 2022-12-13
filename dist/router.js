@@ -8,9 +8,11 @@ const node_path_1 = __importDefault(require("node:path"));
 const express_1 = require("express");
 const multer_1 = __importDefault(require("multer"));
 const createCategory_1 = require("./app/useCases/categories/createCategory");
+const deleteCategory_1 = require("./app/useCases/categories/deleteCategory");
 const listCategories_1 = require("./app/useCases/categories/listCategories");
 const createProduct_1 = require("./app/useCases/products/createProduct");
 const listProducts_1 = require("./app/useCases/products/listProducts");
+const deleteProduct_1 = require("./app/useCases/products/deleteProduct");
 const listProductsByCategory_1 = require("./app/useCases/categories/listProductsByCategory");
 const listOrders_1 = require("./app/useCases/orders/listOrders");
 const createOrder_1 = require("./app/useCases/orders/createOrder");
@@ -31,10 +33,14 @@ const upload = (0, multer_1.default)({
 exports.router.get('/categories', listCategories_1.listCategories);
 // Create category
 exports.router.post('/categories', createCategory_1.createCategory);
+// Delete category
+exports.router.delete('/categories/:categoryId', deleteCategory_1.deleteCategory);
 // List products
 exports.router.get('/products', listProducts_1.listProducts);
 // Create product
 exports.router.post('/products', upload.single('image'), createProduct_1.createProduct);
+// Delete product
+exports.router.delete('/products/:productId', deleteProduct_1.deleteProduct);
 // Get products by category
 exports.router.get('/categories/:categoryId/products', listProductsByCategory_1.listProductsByCategory);
 // List orders
